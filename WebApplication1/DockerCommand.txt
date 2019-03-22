@@ -1,0 +1,124 @@
+﻿## List Docker CLI commands
+docker
+docker container --help
+
+## Display Docker version and info
+docker --version
+docker version
+docker info
+
+## Execute Docker image
+docker run hello-world
+
+## List Docker images
+docker image ls
+
+## List Docker containers (running, all, all in quiet mode)
+docker container ls
+docker container ls --all
+docker container ls -aq
+
+# docker pull microsoft/aspnetcore:v2.1.1
+# docker build -t aspnetcore-docker-image:v1.0 .
+
+# docker run -ti -p 5080:80 aspnetcore-docker-image:v1.0
+
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker image ls
+REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
+aspnetcore-docker-image             v1.0                9c9e19d4106a        17 seconds ago      350MB
+<none>                              <none>              7a5e516c39ed        55 seconds ago      1.76GB
+<none>                              <none>              c5569480c3e3        7 minutes ago       2.02GB
+<none>                              <none>              3a1848e82172        14 minutes ago      2.02GB
+<none>                              <none>              83150b5ba022        18 minutes ago      2.02GB
+<none>                              <none>              932368a4bad5        About an hour ago   2.02GB
+mcr.microsoft.com/dotnet/core/sdk   2.1                 c17aa78d71c2        9 days ago          1.73GB
+docker4w/nsenter-dockerd            latest              2f1c802f322f        5 months ago        187kB
+alpine                              <none>              196d12cf6ab1        6 months ago        4.41MB
+hello-world                         latest              4ab4c602aa5e        6 months ago        1.84kB
+microsoft/aspnetcore-build          latest              06a6525397c2        7 months ago        2.02GB
+microsoft/aspnetcore                latest              db030c19e94b        7 months ago        347MB
+microsoft/aspnetcore                2.0.6               6accbd9bed02        11 months ago       325MB
+microsoft/aspnetcore-build          2.0.0               c5549d4c5716        17 months ago       1.86GB
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker rmi 7a5e516c39ed
+Deleted: sha256:7a5e516c39edb15691af3a87501cf2179db45061c16bbf6594de6aa1ebba4718
+Deleted: sha256:b3fa29065d7a951fbaece1d105b78052cbef4b44fbb78fe37b34e87bea75b326
+Deleted: sha256:01610a646a22c11822bbdfef57ee1fca830520ebe81ad119de92d656c2096d8f
+Deleted: sha256:1f70c247834e023f819978d07fc826128c2868028a1a54f94b9b15c72681c13c
+Deleted: sha256:fed0ecaec83a72dd1438678b0a6e641df86bdee269a146de4f7c3ed3139b8266
+Deleted: sha256:7b9baca16d0363fc0c977d11fd62e4019b85d967c3769a3af0cbaed96b4168a6
+Deleted: sha256:81902f8a66629b3e587b7e5d2bd8e224658faf36f75563a35b8ca566e97ff56d
+Deleted: sha256:9d46035d0b00fd35995597ab9f6fd6496722f220e25d579f4760db3abeac7529
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+#
+
+
+
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
+WORKDIR /code
+COPY . .
+RUN dotnet restore
+RUN dotnet publish --output /output --configuration Release
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1
+COPY --from=build /output /app
+WORKDIR  /app
+ENTRYPOINT ["dotnet","WebApplication1.dll"]
+
+
+
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker image  ls
+REPOSITORY                          TAG                      IMAGE ID            CREATED             SIZE
+aspnetcore-docker-image             v3.0                     3011146e61d7        9 minutes ago       1.73GB
+<none>                              <none>                   dde4e3bc2c21        9 minutes ago       1.76GB
+aspnetcore-docker-image             v2.0                     5de5045ae4ca        29 minutes ago      350MB
+<none>                              <none>                   7d0ea49fc1a2        29 minutes ago      1.76GB
+aspnetcore-docker-image             v1.0                     9c9e19d4106a        44 minutes ago      350MB
+<none>                              <none>                   c5569480c3e3        About an hour ago   2.02GB
+<none>                              <none>                   3a1848e82172        About an hour ago   2.02GB
+<none>                              <none>                   83150b5ba022        About an hour ago   2.02GB
+<none>                              <none>                   932368a4bad5        2 hours ago         2.02GB
+mcr.microsoft.com/dotnet/core/sdk   2.1                      c17aa78d71c2        10 days ago         1.73GB
+microsoft/dotnet                    2.1-aspnetcore-runtime   842ab26f00ea        10 days ago         253MB
+docker4w/nsenter-dockerd            latest                   2f1c802f322f        5 months ago        187kB
+alpine                              <none>                   196d12cf6ab1        6 months ago        4.41MB
+hello-world                         latest                   4ab4c602aa5e        6 months ago        1.84kB
+microsoft/aspnetcore-build          latest                   06a6525397c2        7 months ago        2.02GB
+microsoft/aspnetcore                latest                   db030c19e94b        7 months ago        347MB
+microsoft/aspnetcore                2.0.6                    6accbd9bed02        11 months ago       325MB
+microsoft/aspnetcore-build          2.0.0                    c5549d4c5716        17 months ago       1.86GB
+ 
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker tag aspnetcore-docker-image:v3.0 ariyurek/dockerdemo:v1.0
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker image ls
+REPOSITORY                          TAG                      IMAGE ID            CREATED             SIZE
+ariyurek/dockerdemo                 v1.0                     3011146e61d7        11 minutes ago      1.73GB
+aspnetcore-docker-image             v3.0                     3011146e61d7        11 minutes ago      1.73GB
+<none>                              <none>                   dde4e3bc2c21        11 minutes ago      1.76GB
+aspnetcore-docker-image             v2.0                     5de5045ae4ca        32 minutes ago      350MB
+<none>                              <none>                   7d0ea49fc1a2        32 minutes ago      1.76GB
+aspnetcore-docker-image             v1.0                     9c9e19d4106a        About an hour ago   350MB
+<none>                              <none>                   c5569480c3e3        About an hour ago   2.02GB
+<none>                              <none>                   3a1848e82172        About an hour ago   2.02GB
+<none>                              <none>                   83150b5ba022        About an hour ago   2.02GB
+<none>                              <none>                   932368a4bad5        2 hours ago         2.02GB
+mcr.microsoft.com/dotnet/core/sdk   2.1                      c17aa78d71c2        10 days ago         1.73GB
+microsoft/dotnet                    2.1-aspnetcore-runtime   842ab26f00ea        10 days ago         253MB
+docker4w/nsenter-dockerd            latest                   2f1c802f322f        5 months ago        187kB
+alpine                              <none>                   196d12cf6ab1        6 months ago        4.41MB
+hello-world                         latest                   4ab4c602aa5e        6 months ago        1.84kB
+microsoft/aspnetcore-build          latest                   06a6525397c2        7 months ago        2.02GB
+microsoft/aspnetcore                latest                   db030c19e94b        7 months ago        347MB
+microsoft/aspnetcore                2.0.6                    6accbd9bed02        11 months ago       325MB
+microsoft/aspnetcore-build          2.0.0                    c5549d4c5716        17 months ago       1.86GB
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+#

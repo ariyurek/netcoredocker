@@ -1,0 +1,1 @@
+﻿basic .netcore and docker project

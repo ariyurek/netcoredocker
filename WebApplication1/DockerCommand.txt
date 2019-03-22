@@ -1,6 +1,7 @@
 ﻿## List Docker CLI commands
 docker
 docker container --help
+#https://hub.docker.com/r/microsoft/aspnetcore-build
 
 ## Display Docker version and info
 docker --version
@@ -120,5 +121,38 @@ microsoft/aspnetcore                latest                   db030c19e94b       
 microsoft/aspnetcore                2.0.6                    6accbd9bed02        11 months ago       325MB
 microsoft/aspnetcore-build          2.0.0                    c5549d4c5716        17 months ago       1.86GB
 
+ 
+C:\WINDOWS\system32>docker container ls
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                  NAMES
+2e77c67b1f30        aspnetcore-docker-image:v3.0   "dotnet WebApplicati…"   28 minutes ago      Up 28 minutes       0.0.0.0:5080->80/tcp   relaxed_dhawan
+721d0e0e2c71        alpine:latest                  "ping 8.8.8.8"           2 hours ago         Up 2 hours                                 upbeat_johnson.3.kqbsjp91uzkqzv5ng0cflckem
+bf2f9c7113ce        alpine:latest                  "ping 8.8.8.8"           2 hours ago         Up 2 hours                                 upbeat_johnson.1.s7kfsublwen1u2ers9dcvp0lh
+a22720a34e27        alpine:latest                  "ping 8.8.8.8"           2 hours ago         Up 2 hours                                 upbeat_johnson.2.rxfvqbzkn9udlxjxor8y4ddy1
+
+C:\WINDOWS\system32>docker stop  2e77c67b1f30
+2e77c67b1f30
+
+
 alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
-#
+# docker login
+Authenticating with existing credentials...
+Login Succeeded
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker push ariyurek/dockerdemo:v1.0
+The push refers to repository [docker.io/ariyurek/dockerdemo]
+083e0224994f: Pushed
+28db32edef2f: Pushed
+162006abed41: Pushed
+111bf8a6d6fc: Pushed
+3443d6cf0f1f: Pushed
+f3a38968d075: Pushed
+a327787b3c73: Pushed
+5bb0785f2eee: Pushed
+v1.0: digest: sha256:9fc9845ca0dd50bef4978321a0867d414ed71665e9eb90892f63fa186f2aeec5 size: 2012
+
+alias@ERENBHKR C:\TFS\DEV\UdemyCore\WebApplication1\WebApplication1
+# docker pull ariyurek/dockerdemo:v1.0
+v1.0: Pulling from ariyurek/dockerdemo
+Digest: sha256:9fc9845ca0dd50bef4978321a0867d414ed71665e9eb90892f63fa186f2aeec5
+Status: Image is up to date for ariyurek/dockerdemo:v1.0
